@@ -26,11 +26,11 @@ func TestStillRunning(t *testing.T) {
 	}
 }
 
-func sleep(t *testing.T, sec string) *AsyncProc {
+func sleep(t *testing.T, sec string) *Proc {
 	return MustStart(exec.Command("sleep", sec)) // not sure if windows has this
 }
 
-func waitForExit(t *testing.T, maxWait time.Duration, ap *AsyncProc) {
+func waitForExit(t *testing.T, maxWait time.Duration, ap *Proc) {
 	for die := time.Now().Add(maxWait); time.Now().Before(die); {
 		if ap.Exited() {
 			return
